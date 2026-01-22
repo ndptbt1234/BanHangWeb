@@ -37,7 +37,7 @@ public class AuthController {
         model.addAttribute("registerForm", form);
         return "register";
     }
-
+//NEWLINE
     // 2. POST: Xử lý đăng ký
     @PostMapping("/register")
     public String processRegister(@Valid @ModelAttribute("registerForm") RegisterForm registerForm,
