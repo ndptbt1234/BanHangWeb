@@ -112,7 +112,7 @@
             opacity: 1;
             visibility: visible;
         }
-
+        /* NEW */
         /* --- CÁC PHẦN KHÁC --- */
         .nav-actions { display: flex; align-items: center; gap: 20px; z-index: 203; pointer-events: auto; }
         .search-container { position: relative; width: 180px; }
