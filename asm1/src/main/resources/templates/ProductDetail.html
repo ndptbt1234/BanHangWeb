@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: white;
+        }
+
+        /* ================= LAYOUT ================= */
+        .detail-wrapper {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            gap: 40px;
+            padding: 50px 0;
+        }
+
+        /* ================= LEFT THUMBNAILS ================= */
+        .thumb-list {
+            width: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .thumb-list img {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .thumb-list img:hover {
+            border: 2px solid black;
+        }
+
+        /* ================= MAIN IMAGE ================= */
+        .main-image-box {
+            flex: 2;
+            background: #f5f5f5;
+            border-radius: 25px;
+            height: 650px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-image-box img {
+            width: 85%;
+            object-fit: contain;
+        }
+
+        /* ================= PRODUCT INFO ================= */
+        .product-info {
+            flex: 1.4;
+        }
+
+        .product-info h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .product-info p {
+            margin: 5px 0;
+            color: gray;
+            font-size: 15px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 18px 0;
+        }
+
+        /* ================= COLOR OPTIONS ================= */
+        .color-options {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .color-options img {
+            width: 75px;
+            height: 55px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .color-options img:hover {
+            border: 2px solid black;
+        }
+
+        /* ================= BUTTONS ================= */
+        .btn-gray {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            background: #f2f2f2;
+            font-size: 18px;
+            border-radius: 45px;
+            margin-top: 20px;
+        }
+
+        .btn-black {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            background: black;
+            color: white;
+            font-size: 18px;
+            border-radius: 45px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-black:hover {
+            opacity: 0.85;
+        }
+
+        /* ================= DETAILS LIST ================= */
+        ul {
+            margin-top: 28px;
+            padding-left: 18px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .detail-link {
+            display: inline-block;
+            margin-top: 18px;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* ================= BACK BUTTON ================= */
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="detail-wrapper">
+
+    <!-- ================= LEFT THUMBNAILS ================= -->
+    <div class="thumb-list">
+        <img th:src="@{${product.imageUrl}}" alt="thumb">
+        <img th:src="@{${product.imageUrl}}" alt="thumb">
+        <img th:src="@{${product.imageUrl}}" alt="thumb">
+        <img th:src="@{${product.imageUrl}}" alt="thumb">
+    </div>
+
+    <!-- ================= MAIN IMAGE ================= -->
+    <div class="main-image-box">
+        <img th:src="@{${product.imageUrl}}" alt="Main Product">
+    </div>
+
+    <!-- ================= PRODUCT INFO ================= -->
+    <div class="product-info">
+
+        <!-- Name -->
+        <h1 th:text="${product.name}">
+            Nike Structure Plus
+        </h1>
+
+        <!-- Category -->
+        <p th:text="${product.gender} + ' ' + ${product.category}">
+            Giày chạy bộ dành cho nam
+        </p>
+
+        <!-- Price -->
+        <div class="price"
+             th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')} + '₫'">
+            4.699.000₫
+        </div>
+
+        <!-- Color Options -->
+        <div class="color-options">
+            <img th:src="@{${product.imageUrl}}">
+            <img th:src="@{${product.imageUrl}}">
+            <img th:src="@{${product.imageUrl}}">
+            <img th:src="@{${product.imageUrl}}">
+        </div>
+
+        <!-- Buttons -->
+        <button class="btn-gray">Thêm vào yêu thích</button>
+
+        <button class="btn-black">
+            Mua ngay
+        </button>
+
+        <!-- Product Details -->
+        <ul>
+            <li>Màu sắc hiển thị: Đen / Trắng / Đỏ</li>
+            <li>Mã sản phẩm: HQ3048-500</li>
+            <li>Xuất xứ: Việt Nam</li>
+        </ul>
+
+        <span class="detail-link">
+            Xem chi tiết sản phẩm
+        </span>
+
+        <h3 style="margin-top:30px;">
+            Giao hàng và đổi trả miễn phí ⌄
+        </h3>
+
+        <!-- Back -->
+        <a href="/new-arrivals" class="back-btn">
+            ⬅ Quay lại New Arrivals
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
