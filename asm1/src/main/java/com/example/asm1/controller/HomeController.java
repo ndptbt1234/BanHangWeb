@@ -12,7 +12,7 @@ import com.example.asm1.repository.ProductRepository;
 
 @Controller
 public class HomeController {
-
+// daddada
     @Autowired
     private ProductRepository productRepository;
 
