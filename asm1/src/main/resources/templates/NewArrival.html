@@ -338,9 +338,13 @@
             </div>
 
             <div class="product-card" th:each="product : ${products}">
-                <div class="product-img-box">
-                    <img th:src="@{${product.imageUrl}}" alt="Product Image">
-                </div>
+
+    <!-- ✅ CLICK IMAGE -->
+    <a th:href="@{/product/detail/{id}(id=${product.id})}">
+        <div class="product-img-box">
+            <img th:src="@{${product.imageUrl}}" alt="Product Image">
+        </div>
+    </a>
                 
                 <div class="product-info">
                     <div class="tag-just-in" th:if="${product.isFeatured}">Just In</div>
